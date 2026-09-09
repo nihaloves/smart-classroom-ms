@@ -2,6 +2,9 @@
 bin/
 *.class
 
+# External libraries
+lib/
+
 # IDE files
 .vscode/
 .idea/
@@ -14,6 +17,3 @@ Thumbs.db
 # Secrets / local configuration
 .env
 config.properties
-
-# External libraries
-lib/
