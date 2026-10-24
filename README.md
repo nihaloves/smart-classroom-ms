@@ -90,15 +90,23 @@ Replace the placeholder with your local MySQL password. Do not commit passwords 
 
 ## Compile and Run
 
-Open PowerShell in the project directory.
+### 1. Configure the database
 
-Compile the source files:
+- Install and start MySQL Server.
+- Create the `scms` database and its required tables.
+- Set the `SCMS_DB_PASSWORD` environment variable to your MySQL password.
+
+In PowerShell:
 
 ```powershell
-javac -cp "lib/*;bin" -d bin src/**/*.java
+$env:SCMS_DB_PASSWORD = "YOUR_MYSQL_PASSWORD"
 ```
 
-If your shell does not expand recursive source paths, compile all Java files with:
+Replace the placeholder with your actual local password. Do not commit credentials to GitHub.
+
+### 2. Compile the project
+
+Open PowerShell in the project root directory and run:
 
 ```powershell
 $files = Get-ChildItem src -Recurse -Filter *.java |
@@ -107,13 +115,18 @@ $files = Get-ChildItem src -Recurse -Filter *.java |
 javac -cp "lib/*;bin" -d bin $files
 ```
 
-Run the application using the project's main class:
+### 3. Launch the application
+
+Start the graphical login interface:
 
 ```powershell
-java -cp "lib/*;bin" Main
+java -cp "lib/*;bin" ui.LoginFrame
 ```
 
-If your `Main` class declares a package, use its fully qualified class name instead.
+After launching, select the appropriate role and enter valid credentials.
+
+**Note:** `Main.java` runs the original object-oriented programming demonstration. Use `ui.LoginFrame` to launch the interactive SCMS application.
+
 
 ## Security Notes
 
