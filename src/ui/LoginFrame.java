@@ -114,26 +114,24 @@ public class LoginFrame extends JFrame {
                 );
 
                 if (userId != null) {
-                    messageLabel.setText("Login successful!");
+    messageLabel.setText("Login successful!");
 
-                    JOptionPane.showMessageDialog(
-                        LoginFrame.this,
-                        "Welcome!\nRole: " + role
-                         + "\nUser ID: " + userId
-            );
+    JOptionPane.showMessageDialog(
+        LoginFrame.this,
+        "Welcome!\nRole: " + role
+            + "\nUser ID: " + userId
+    );
 
-                    if ("STUDENT".equals(role)) {
-                        StudentDashboard dashboard =
-                            new StudentDashboard(userId);
-
-                            dashboard.setVisible(true);
-                            dispose();
-                    } else {
-                        JOptionPane.showMessageDialog(
-                            LoginFrame.this,
-                "Teacher dashboard is coming next."
-        );
+    if (role.equals("STUDENT")) {
+        new StudentDashboard(userId).setVisible(true);
+        dispose();
+    } else if (role.equals("TEACHER")) {
+        new TeacherDashboard(userId).setVisible(true);
+        dispose();
     }
+
+} else {
+    messageLabel.setText("Invalid username, password, or role.");
 }
 
             } catch (Exception ex) {
